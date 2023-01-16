@@ -1,6 +1,7 @@
 package main
 
 import (
+	"GoWeb/pojo"
 	. "GoWeb/src"
 
 	"github.com/gin-gonic/gin"
@@ -8,6 +9,7 @@ import (
 
 func main() {
 	router := gin.Default()
+	pojo.ConnectDatabase()
 	router.SetTrustedProxies([]string{"localhost"})
 	v1 := router.Group("/v1")
 	AddUserRouter(v1)
