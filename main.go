@@ -1,15 +1,18 @@
 package main
 
 import (
-	"GoWeb/pojo"
+	. "GoWeb/pojo"
 	. "GoWeb/src"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	router := gin.Default()
-	pojo.ConnectDatabase()
+	router.Use(cors.Default())
+	// pojo.ConnectDatabase()
+	ConnectDatabase()
 	router.SetTrustedProxies([]string{"localhost"})
 	v1 := router.Group("/v1")
 	AddUserRouter(v1)
