@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "GoWeb/pojo"
+	. "GoWeb/db"
 	. "GoWeb/src"
 
 	"github.com/gin-contrib/cors"
@@ -11,12 +11,11 @@ import (
 func main() {
 	router := gin.Default()
 	router.Use(cors.Default())
-	// pojo.ConnectDatabase()
 	ConnectDatabase()
 	router.SetTrustedProxies([]string{"localhost"})
 	v1 := router.Group("/v1")
 	AddUserRouter(v1)
-
+	AddTodoRouter(v1)
 	// router.GET("/", func(c *gin.Context) {
 	// 	// If the client is 192.168.1.2, use the X-Forwarded-For
 	// 	// header to deduce the original client IP from the trust-
